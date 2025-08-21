@@ -308,7 +308,9 @@ Use these tools to set up a Spring Boot project with Docker.
    ```bash
    mvn spring-boot:build-image -Dspring-boot.build-image.imageName=yourusername/yourappname
    ```
-   - Example: `atulkumaruttam/ecom-application`.
+   - Example: `aku/ecom-application`.
+   - mvn spring-boot:build-image -D"spring-boot.build-image.imageName=aku/ecom-app"
+
 
 ### Step 3: Run Docker Container
 
