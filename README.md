@@ -372,5 +372,27 @@ docker run -p 8080:8080 yourusername/yourappname
 | Push to Docker Hub            | `docker push ...`                                       | Same as Windows                                      |
 
 ---
+##**Stop & Remove the Container(s) Using It
+**
+Find containers using that image:
+
+docker ps -a --filter ancestor=atulkumaruttam/ecom-app
+
+
+This will list all containers created from your image.
+
+Stop the container(s):
+
+docker stop <container_id>
+
+
+Remove the container(s):
+
+docker rm <container_id>
+
+
+Now remove the image:
+
+docker rmi atulkumaruttam/ecom-app:latest
 
 
