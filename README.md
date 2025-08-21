@@ -285,12 +285,23 @@ Use these tools to set up a Spring Boot project with Docker.
 3. **Create `application.properties`**:
    - In `src/main/resources/application.properties`:
      ```properties
-     server.port=8080
-     spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-     spring.datasource.driver-class-name=org.h2.Driver
-     spring.datasource.username=sa
-     spring.datasource.password=
-     spring.jpa.hibernate.ddl-auto=update
+spring.application.name=M2_Ecom
+
+# Enable H2 Console
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+spring.h2.console.settings.web-allow-others=true
+
+# H2 Database (In-Memory with MySQL mode)
+spring.datasource.url=jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MySQL
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+# Hibernate
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=update
+
      ```
 
 ### Step 2: Build Docker Image
@@ -375,27 +386,27 @@ docker run -p 8080:8080 yourusername/yourappname
 | Push to Docker Hub            | `docker push ...`                                       | Same as Windows                                      |
 
 ---
-##**Stop & Remove the Container(s) Using It
-**
-Find containers using that image:
-
+##**Stop & Remove the Container(s) Using It**
+**Find containers using that image:**
+```bash
 docker ps -a --filter ancestor=atulkumaruttam/ecom-app
+```
+
+**This will list all containers created from your image.**
 
 
-This will list all containers created from your image.
 
-Stop the container(s):
-
+**Stop the container(s):**
+```bash
 docker stop <container_id>
+```
 
-
-Remove the container(s):
-
+**Remove the container(s):**
+```bash
 docker rm <container_id>
+```
 
-
-Now remove the image:
-
+**Now remove the image:**
+```bash
 docker rmi atulkumaruttam/ecom-app:latest
-
-
+```
